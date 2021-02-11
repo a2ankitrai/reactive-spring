@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ank</groupId>
+  <artifactId>reactive-spring</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>01-flux-mono</module>
+  </modules>
+
+
+  <name>reactive-spring</name>
+  <packaging>pom</packaging>
+
+  <properties>
+    <java.source.target.version>11</java.source.target.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>${java.source.target.version}</maven.compiler.source>
+    <maven.compiler.target>${java.source.target.version}</maven.compiler.target>
+    <maven.compiler.release>${java.source.target.version}</maven.compiler.release>
+
+    <!-- Spring dependencies -->
+    <spring.framework.version>5.3.3</spring.framework.version>
+    <spring.boot.version>2.4.2</spring.boot.version>
+
+    <!-- reactor -->
+    <reactor.version>2020.0.3</reactor.version>
+
+    <!-- third party libraries -->
+    <lombok.version>1.18.18</lombok.version>
+
+    <!-- Test dependencies -->
+    <junit.jupiter>5.7.1</junit.jupiter>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- BOM stands for Bill Of Materials.
+          A BOM is a special kind of POM that is used to control the versions of a project’s
+          dependencies and provide a central place to define and update those versions.
+          BOM provides the flexibility to add a dependency to our module without worrying about the version that we should depend on.
+
+          We are defining bom pom here and in each of the sub modules, we will just refer to the dependencies from this
+          pom and will not have to specify the versions there.
+      -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${spring.framework.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-bom</artifactId>
+        <version>${reactor.version}</version>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
