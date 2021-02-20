@@ -3,6 +3,8 @@ package com.ank.mono;
 import com.ank.util.Util;
 import reactor.core.publisher.Mono;
 
+import java.util.concurrent.Callable;
+
 public class MonoFromSupplier {
 
     public static void main(String[] args) {
@@ -22,6 +24,9 @@ public class MonoFromSupplier {
         Mono<String> stringMono = Mono.fromSupplier(MonoFromSupplier::getName);
         stringMono.subscribe(Util.onNext());
 
+        Callable<String> stringCallable = MonoFromSupplier::getName;
+        Mono<String> fromCallable = Mono.fromCallable(stringCallable);
+        fromCallable.subscribe(Util.onNext());
     }
 
     private static String getName() {
