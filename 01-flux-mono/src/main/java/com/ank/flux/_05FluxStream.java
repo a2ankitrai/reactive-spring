@@ -34,6 +34,7 @@ public class _05FluxStream {
 
         /*
          * Below is the correct way of the implementing the same.
+         * With this implementation, both the subscriber will get the items.
          * */
         Flux<Integer> integerFlux = Flux.fromStream(() -> integerList.stream());
 
