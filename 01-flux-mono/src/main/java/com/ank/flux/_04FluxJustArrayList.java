@@ -18,6 +18,5 @@ public class _04FluxJustArrayList {
         String[] arr = { "w", "x", "y", "z" };
         Flux.just(arr)
             .subscribe(Util.onNext());
-
     }
 }
